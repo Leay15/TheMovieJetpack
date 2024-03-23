@@ -21,8 +21,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -32,6 +36,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.iscms.themoviejetpack.ui.theme.TheMovieJetpackTheme
 
 class MainActivity : ComponentActivity() {
@@ -44,7 +50,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    MediaItem()
                 }
             }
         }
@@ -59,7 +65,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
-//@Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun MediaItem() {
     Column {
@@ -67,10 +73,12 @@ fun MediaItem() {
             modifier = Modifier
                 .height(200.dp)
                 .fillMaxWidth()
-                .background(Color.Red)
                 .align(Alignment.CenterHorizontally)
         ) {
-
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current).crossfade(true).data("https://fastly.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI").error(R.drawable.ic_launcher_foreground).build(),
+                contentDescription = null
+            )
         }
         Box(
             modifier = Modifier
@@ -79,13 +87,16 @@ fun MediaItem() {
                 .padding(16.dp),
             contentAlignment = Alignment.Center
         ) {
-            Text(text = "Title 1")
+            Text(
+                text = "Title 1",
+                style = MaterialTheme.typography.titleLarge
+            )
         }
     }
 }
 
 
-@Preview(showBackground = true, widthDp = 400, heightDp = 200)
+//@Preview(showBackground = true, widthDp = 400, heightDp = 200)
 @Composable
 fun ButtonText() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -97,7 +108,15 @@ fun ButtonText() {
             fontFamily = FontFamily.Cursive,
             letterSpacing = 5.sp,
             textDecoration = TextDecoration.LineThrough,
-            lineHeight = 2.em
+            lineHeight = 2.em,
+            maxLines = 1,
+            onTextLayout = {},
+            style = MaterialTheme.typography.headlineLarge.copy(
+                shadow = Shadow(
+                    offset = Offset(10f, 10f),
+                    blurRadius = 10f
+                )
+            )
         )
     }
 }
