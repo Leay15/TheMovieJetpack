@@ -23,11 +23,18 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayCircleOutline
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -40,6 +47,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -59,7 +67,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MediaList()
+                    val (value, onValueChanged) = rememberSaveable {
+                        mutableStateOf("")
+                    }
+                    StateExample(value = value,
+                        onValueChange = onValueChanged)
                 }
             }
         }
@@ -72,6 +84,37 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         modifier = modifier,
         text = stringResource(id = R.string.hello_world)
     )
+}
+
+//@Preview(showBackground = true, widthDp = 400, heightDp = 400)
+@Composable
+fun StateExample(value: String, onValueChange: (String) -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(64.dp),
+        verticalArrangement = Arrangement.Center,
+    ) {
+        TextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Text(
+            text = value,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Yellow)
+                .padding(8.dp)
+        )
+        Button(
+            onClick = { onValueChange("") },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = value.isNotEmpty()
+        ) {
+            Text(text = "Clear")
+        }
+    }
 }
 
 @Preview(showBackground = true)
