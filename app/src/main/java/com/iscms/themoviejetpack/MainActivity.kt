@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,13 +23,23 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Android
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.PlayCircleOutline
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -55,23 +66,21 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.iscms.themoviejetpack.ui.MainAppBar
+import com.iscms.themoviejetpack.ui.MediaList
+import com.iscms.themoviejetpack.ui.TheMovieApp
 import com.iscms.themoviejetpack.ui.theme.TheMovieJetpackTheme
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TheMovieJetpackTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    val (value, onValueChanged) = rememberSaveable {
-                        mutableStateOf("")
-                    }
-                    StateExample(value = value,
-                        onValueChange = onValueChanged)
+            TheMovieApp {
+                Scaffold(topBar = {
+                    MainAppBar()
+                }) { padding ->
+                    MediaList(modifier = Modifier.padding(padding))
                 }
             }
         }
@@ -116,71 +125,6 @@ fun StateExample(value: String, onValueChange: (String) -> Unit) {
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun MediaListItem(@PreviewParameter(MediaItemParameterProvider::class) mediaItem: MediaItem) {
-    Column(
-        modifier = Modifier.width(200.dp)
-    ) {
-        Box(
-            modifier = Modifier
-                .height(200.dp)
-                .fillMaxWidth()
-                .align(Alignment.CenterHorizontally)
-        ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .crossfade(true)
-                    .data(mediaItem.thumb)
-                    .error(R.drawable.ic_launcher_foreground)
-                    .build(),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
-            )
-            if (mediaItem.type == MediaItem.Type.VIDEO) {
-                Icon(
-                    imageVector = Icons.Default.PlayCircleOutline,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .size(92.dp)
-                )
-            }
-        }
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.secondary)
-                .padding(16.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = mediaItem.title,
-                style = MaterialTheme.typography.titleLarge
-            )
-        }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun MediaList() {
-    LazyVerticalGrid(
-        contentPadding = PaddingValues(4.dp),
-        columns = GridCells.Adaptive(150.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
-    ) {
-        items(getMedia()) { mediaItem ->
-            MediaListItem(mediaItem)
-        }
-    }
-}
-
 //@Preview(showBackground = true, widthDp = 400, heightDp = 200)
 @Composable
 fun ButtonText() {
