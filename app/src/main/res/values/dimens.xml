@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_xsmall">4dp</dimen>
+    <dimen name="cell_min_width">150dp</dimen>
+    <dimen name="cell_space_arrangement">4dp</dimen>
+    <dimen name="media_list_column_width">200dp</dimen>
+    <dimen name="media_list_item_height">200dp</dimen>
+    <dimen name="media_list_item_video_icon_size">92dp</dimen>
+    <dimen name="media_list_item_title_padding">16dp</dimen>
+</resources>

@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -33,11 +34,11 @@ import com.iscms.themoviejetpack.R
 @Composable
 fun MediaListItem(@PreviewParameter(MediaItemParameterProvider::class) mediaItem: MediaItem) {
     Column(
-        modifier = Modifier.width(200.dp)
+        modifier = Modifier.width(dimensionResource(id = R.dimen.media_list_column_width))
     ) {
         Box(
             modifier = Modifier
-                .height(200.dp)
+                .height(dimensionResource(id = R.dimen.media_list_item_height))
                 .fillMaxWidth()
                 .align(Alignment.CenterHorizontally)
         ) {
@@ -58,7 +59,7 @@ fun MediaListItem(@PreviewParameter(MediaItemParameterProvider::class) mediaItem
                     tint = Color.White,
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .size(92.dp)
+                        .size(dimensionResource(id = R.dimen.media_list_item_video_icon_size))
                 )
             }
         }
@@ -66,7 +67,7 @@ fun MediaListItem(@PreviewParameter(MediaItemParameterProvider::class) mediaItem
             modifier = Modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.secondary)
-                .padding(16.dp),
+                .padding(dimensionResource(id = R.dimen.media_list_item_title_padding)),
             contentAlignment = Alignment.Center
         ) {
             Text(

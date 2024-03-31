@@ -7,8 +7,10 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.iscms.themoviejetpack.R
 import com.iscms.themoviejetpack.model.getMedia
 import com.iscms.themoviejetpack.ui.items.MediaListItem
 
@@ -16,10 +18,10 @@ import com.iscms.themoviejetpack.ui.items.MediaListItem
 @Composable
 fun MediaList(modifier: Modifier = Modifier) {
     LazyVerticalGrid(
-        contentPadding = PaddingValues(4.dp),
-        columns = GridCells.Adaptive(150.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        contentPadding = PaddingValues(dimensionResource(id = R.dimen.padding_xsmall)),
+        columns = GridCells.Adaptive(dimensionResource(id = R.dimen.cell_min_width)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.cell_space_arrangement)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.cell_space_arrangement)),
         modifier = modifier
     ) {
         items(getMedia()) { mediaItem ->
