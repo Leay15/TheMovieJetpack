@@ -1,10 +1,8 @@
-package com.iscms.themoviejetpack
+package com.iscms.themoviejetpack.ui.items
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.BasicText
 import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iscms.themoviejetpack.R
 
 @Preview(showBackground = true, widthDp = 160, heightDp = 300)
 @Composable
