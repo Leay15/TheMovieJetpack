@@ -1,4 +1,4 @@
-package com.iscms.themoviejetpack
+package com.iscms.themoviejetpack.model
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 

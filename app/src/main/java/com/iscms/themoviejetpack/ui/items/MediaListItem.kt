@@ -1,4 +1,4 @@
-package com.iscms.themoviejetpack.ui
+package com.iscms.themoviejetpack.ui.items
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -25,8 +25,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.iscms.themoviejetpack.MediaItem
-import com.iscms.themoviejetpack.MediaItemParameterProvider
+import com.iscms.themoviejetpack.model.MediaItem
+import com.iscms.themoviejetpack.model.MediaItemParameterProvider
 import com.iscms.themoviejetpack.R
 
 @Preview(showBackground = true)

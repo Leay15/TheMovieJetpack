@@ -1,4 +1,4 @@
-package com.iscms.themoviejetpack.ui
+package com.iscms.themoviejetpack.ui.screen.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -9,7 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.iscms.themoviejetpack.getMedia
+import com.iscms.themoviejetpack.model.getMedia
+import com.iscms.themoviejetpack.ui.items.MediaListItem
 
 @Preview(showBackground = true)
 @Composable

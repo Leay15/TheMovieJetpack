@@ -1,4 +1,4 @@
-package com.iscms.themoviejetpack.ui
+package com.iscms.themoviejetpack.ui.screen.home
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
